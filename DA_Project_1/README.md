@@ -67,7 +67,7 @@ Each Jupyter notebook for this project aimed at investigating specific aspects o
 
 To find the most demanded skills for the top 3 most popular data roles. I filtered out those positions by which ones were the most popular, and got the top 5 skills for these top 3 roles. This query highlights the most popular job titles and their top skills, showing which skills I should pay attention to depending on the role I'm targeting. 
 
-View my notebook with detailed steps here: [Skills_Demand](Skills_Demand.ipynb).
+View my notebook with detailed steps here: [2-Skills_Demand](2-Skills_Demand.ipynb).
 
 ### Visualize Data
 
@@ -100,7 +100,7 @@ plt.show()
 
 To find how skills are trending in 2023 for Data Scientist, I filtered data Scientist positions and grouped the skills by the month of the job postings. This got me the top 5 skills of data Scientist by month, showing how popular skills were throughout 2023.
 
-View my notebook with detailed steps here: [Skills_Trends](Skills_Trends.ipynb).
+View my notebook with detailed steps here: [3-Skills_Trends](3-Skills_Trends.ipynb).
 
 ### Visualize Data
 
@@ -135,4 +135,78 @@ plt.show()
 
 To identify the highest-paying roles and skills, I only got jobs in the India and looked at their median salary. But first I looked at the salary distributions of common data jobs like Data Scientist, Data Engineer, and Data Analyst, to get an idea of which jobs are paid the most. 
 
-View my notebook with detailed steps here: [Salary_Analysis](Salary_Analysis.ipynb).
+View my notebook with detailed steps here: [4-Salary_Analysis](4-Salary_Analysis.ipynb).
+
+#### Visualize Data 
+
+```python
+sns.boxplot(data=df_IND_top6, x='salary_year_avg', y='job_title_short', order=job_order)
+
+ticks_x = plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K')
+plt.gca().xaxis.set_major_formatter(ticks_x)
+plt.show()
+
+```
+#### Results
+
+![Salary Distributions of Data Jobs in the IND](Images/Salary_Distributions_of_Data_Jobs_in_the_IND.png)  
+*Box plot visualizing the salary distributions for the top 6 data job titles.*
+
+#### Insights
+
+- Data Scientist and Machine Learning Engineer have relatively wide salary distributions, indicating greater variation in pay across these roles.
+- Data Engineer shows a relatively high salary range, with a high-paying outlier around $250K.
+- Senior Data Engineer has an unusual pattern with many outliers, particularly on the lower side and a few on the higher side, suggesting significant variation in reported salaries.
+- Data Analyst has a comparatively lower and narrower salary distribution, with most salaries concentrated around the $80K–$110K range.
+- Software Engineer has the lowest central salary range among the roles shown, although there are several higher-salary outliers.
+
+
+### Highest Paid & Most Demanded Skills for Data Scientist
+
+Next, I narrowed my analysis and focused only on data Scientist roles. I looked at the highest-paid skills and the most in-demand skills. I used two bar charts to showcase these.
+
+#### Visualize Data
+
+```python
+
+fig, ax = plt.subplots(2, 1)  
+
+# Top 10 Highest Paid Skills for Data Scientist
+sns.barplot(data=df_DS_top_pay, x='median', y=df_DS_top_pay.index, hue='median', ax=ax[0], palette='dark:b_r')
+
+# Top 10 Most In-Demand Skills for Data Scientister')
+sns.barplot(data=df_DS_skills, x='median', y=df_DS_skills.index, hue='median', ax=ax[1], palette='light:b')
+
+plt.show()
+
+```
+
+#### Results
+Here's the breakdown of the highest-paid & most in-demand skills for data analysts in the US:
+
+![The Highest Paid & Most In-Demand Skills for Data Scientist in the India](Images/The_Highest_Paid&Most_In_Demand_Skills_for_Data_Scientist_in_the_IND.png)
+
+#### Insights:
+
+- High-paying Data Scientist skills include Shell, Express, Looker, Databricks, and BigQuery.
+- Azure, PyTorch, and Python are among the most in-demand skills.
+- Python and ML frameworks such as PyTorch and TensorFlow are important for Data Science careers.
+- Cloud technologies like Azure and AWS are highly valuable in the job market.
+- Combining programming, machine learning, cloud, and data engineering skills can improve career and salary opportunities.
+
+## 4. What are the most optimal skills to learn for Data Scientist?
+
+To identify the most optimal skills to learn ( the ones that are the highest paid and highest in demand) I calculated the percent of skill demand and the median salary of these skills. To easily identify which are the most optimal skills to learn. 
+
+View my notebook with detailed steps here: [5-Optimal_Skills](5-Optimal_Skills.ipynb).
+
+#### Visualize Data
+
+```python
+from adjustText import adjust_text
+import matplotlib.pyplot as plt
+
+plt.scatter(df_DS_skills_high_demand['skill_percent'], df_DS_skills_high_demand['median_salary'])
+plt.show()
+
+```
