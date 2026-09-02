@@ -52,7 +52,7 @@ df['job_skills'] = df['job_skills'].apply(lambda x: ast.literal_eval(x) if pd.no
 
 ## Filter US Jobs
 
-To focus my analysis on the U.S. job market, I apply filters to the dataset, narrowing down to roles based in the India.
+To focus my analysis on the INDIA job market, I apply filters to the dataset, narrowing down to roles based in the India.
 
 ```python
 df_IND = df[df['job_country'] == 'India']
@@ -121,7 +121,7 @@ plt.show()
 ### Results
 
 ![Trending Top Skills for Data Analysts in the US](Images/Trending_Skills_for_DS.png)  
-*Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
+*Bar graph visualizing the trending top skills for data Scientiat in the IND in 2023.*
 
 ### Insights:
 
@@ -182,7 +182,7 @@ plt.show()
 ```
 
 #### Results
-Here's the breakdown of the highest-paid & most in-demand skills for data analysts in the US:
+Here's the breakdown of the highest-paid & most in-demand skills for data Scientist in the IND:
 
 ![The Highest Paid & Most In-Demand Skills for Data Scientist in the India](Images/The_Highest_Paid&Most_In_Demand_Skills_for_Data_Scientist_in_the_IND.png)
 
@@ -210,3 +210,93 @@ plt.scatter(df_DS_skills_high_demand['skill_percent'], df_DS_skills_high_demand[
 plt.show()
 
 ```
+#### Results
+
+![Most Optimal Skills for Data Scientist in the IND](Images/Most_Optimal_Skills_for_Data_Scientist_in_the_IND.png)    
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data Scientist in the IND.*
+
+#### Insights:
+
+- Python is the most in-demand skill, appearing in around 70% of Data Scientist job postings, with a high median salary of approximately $153K.
+- Azure and PyTorch offer the highest median salaries, around $157K–$158K, despite being required in fewer job postings.
+- TensorFlow and R are also high-value skills, associated with median salaries of approximately $136K and $130K, respectively.
+- SQL has very high demand (~53%), making it an important skill for Data Scientists, although its median salary is comparatively lower at around $113K.
+- Spark and Hadoop have lower demand and salaries, while Keras, Tableau, and AWS fall in the middle range for both demand and salary.
+
+### Visualizing Different Techonologies
+
+Let's visualize the different technologies as well in the graph. We'll add color labels based on the technology (e.g., {Programming: Python})
+
+#### Visualize Data
+
+```python
+from matplotlib.ticker import PercentFormatter
+
+# Create a scatter plot
+scatter = sns.scatterplot(
+    data=df_DS_skills_tech_high_demand,
+    x='skill_percent',
+    y='median_salary',
+    hue='technology',  # Color by technology
+    palette='bright',  # Use a bright palette for distinct colors
+    legend='full'  # Ensure the legend is shown
+)
+plt.show()
+
+```
+
+#### Results
+
+![Most Optimal Skills for Data Scientist in the IND with Coloring by Technology](Images/Most_Optimal_Skills_for_Data_Scientist_in_the_IND_with_Coloring_by_Technology.png)  
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data Scientist in the IND with color labels for technology.*
+
+
+### Insights:
+
+- **Python is the most in-demand skill**, appearing in around 70% of Data Scientist job postings, with a median salary of approximately $153K.
+
+- **PyTorch and Azure offer the highest median salaries**, at around $158K, despite having much lower job demand than Python.
+
+- **TensorFlow and R provide strong salary potential**, with median salaries of approximately $136K and $130K, respectively, making them valuable specialized skills.
+
+- **SQL has very high demand**, appearing in around 53% of Data Scientist jobs, making it an essential skill despite its comparatively lower median salary of around $113K.
+
+- **Different technology categories provide different opportunities**: programming skills such as Python have the highest demand, libraries such as PyTorch and TensorFlow offer high salaries, while cloud skills like Azure and AWS add valuable cloud expertise.
+
+
+
+# What I Learned
+
+Throughout this project, I deepened my understanding of the data analyst job market and enhanced my technical skills in Python, especially in data manipulation and visualization. Here are a few specific things I learned:
+
+- **Advanced Python Usage**: Utilizing libraries such as Pandas for data manipulation, Seaborn and Matplotlib for data visualization, and other libraries helped me perform complex data analysis tasks more efficiently.
+- **Data Cleaning Importance**: I learned that thorough data cleaning and preparation are crucial before any analysis can be conducted, ensuring the accuracy of insights derived from the data.
+- **Strategic Skill Analysis**: The project emphasized the importance of aligning one's skills with market demand. Understanding the relationship between skill demand, salary, and job availability allows for more strategic career planning in the tech industry.
+
+
+# Insights
+
+This project provided several key insights into the Data Scientist job market in India:
+
+- **Skill Demand and Salary**: Python is the most in-demand skill for Data Scientists, appearing in around 70% of job postings, while skills such as Azure and PyTorch are associated with higher median salaries.
+
+- **Core Skills for Data Scientists**: Python and SQL are essential skills due to their consistently high demand across Data Scientist job postings.
+
+- **High-Value Specialized Skills**: Machine learning frameworks such as PyTorch and TensorFlow, along with cloud technologies like Azure and AWS, can provide strong career and salary opportunities.
+
+- **Optimal Skill Combination**: Combining programming, SQL, machine learning, cloud, and data engineering skills can help Data Scientists become more competitive in the job market.
+
+- **Career Growth**: The analysis shows that focusing on both highly demanded and well-paying skills can help Data Scientists make more informed decisions about which skills to learn and develop.
+
+# Challenges I Faced
+
+This project was not without its challenges, but it provided good learning opportunities:
+
+- **Data Inconsistencies**: Handling missing or inconsistent data entries requires careful consideration and thorough data-cleaning techniques to ensure the integrity of the analysis.
+- **Complex Data Visualization**: Designing effective visual representations of complex datasets was challenging but critical for conveying insights clearly and compellingly.
+- **Balancing Breadth and Depth**: Deciding how deeply to dive into each analysis while maintaining a broad overview of the data landscape required constant balancing to ensure comprehensive coverage without getting lost in details.
+
+
+# Conclusion
+
+This project provided valuable insights into the Data Scientist job market in India, highlighting the skills that are most in-demand and the skills associated with higher salaries. The analysis shows that Python and SQL are essential skills for Data Scientists, while specialized skills such as PyTorch, TensorFlow, Azure, and AWS can provide additional career and salary opportunities. Overall, this project strengthened my understanding of data analysis using Python and demonstrated how data-driven insights can help identify the skills worth developing for a successful career in Data Science. As the job market continues to evolve, continuously learning and adapting to new technologies will be essential for long-term career growth.
